@@ -20,7 +20,7 @@ from ui_state import (
 # ============================================================================
 st.set_page_config(
     page_title="NestFind - Find Your Dream Home",
-    
+    page_icon="🏠",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -124,7 +124,7 @@ def handle_property_actions(actions: Dict[str, Any]) -> None:
 
 
 # ============================================================================
-# CSS STYLING - Updated with RTL fixes
+# CSS STYLING
 # ============================================================================
 def inject_css():
     """Inject custom CSS for the application."""
@@ -158,7 +158,7 @@ def inject_css():
             padding-bottom: 3rem;
         }
 
-        /* Hero Section */
+        /* Hero Section - Logo only */
         .hero {
             background: rgba(17, 21, 32, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -175,13 +175,7 @@ def inject_css():
             background: linear-gradient(135deg, #64d2ff, #9ae6b4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .hero .logo-sub {
-            font-size: 0.9rem;
-            color: #9aa4b2;
-            margin-left: 0.5rem;
-            -webkit-text-fill-color: #9aa4b2;
+            display: inline-block;
         }
 
         .hero h1 {
@@ -531,7 +525,7 @@ def inject_css():
 
 
 # ============================================================================
-# PROPERTY CARD RENDERER - Fixed with RTL support
+# PROPERTY CARD RENDERER
 # ============================================================================
 PROPERTY_VISUALS = [
     ("#172033", "#2f80ed", "#9ae6b4"),
@@ -852,7 +846,11 @@ def show_property_card(item, rank=None, key_prefix="property"):
             <div class="pill-row" style="direction: ltr !important;">
                 {"".join(f'<span class="pill trade-off">⚖️ {html.escape(str(t))}</span>' for t in tradeoffs[:2])}
                 {"".join(f'<span class="pill watch">⚠️ {html.escape(str(c))}</span>' for c in cons[:2])}
-            
+            </div>
+            <div class="ai-summary" style="direction: ltr !important;">
+                <small>🤖 AI Summary</small>
+                <p style="direction: ltr !important;">{html.escape(ai_summary)}</p>
+            </div>
         </article>
         """,
         unsafe_allow_html=True,
@@ -872,13 +870,12 @@ def show_property_card(item, rank=None, key_prefix="property"):
 # RENDER FUNCTIONS
 # ============================================================================
 def render_hero():
-    """Render the hero section with branding."""
+    """Render the hero section with logo only."""
     st.markdown(
         """
         <div class="hero">
             <div>
                 <span class="logo">NestFind</span>
-                
             </div>
             <h1>Find Your Dream Home</h1>
             <p class="hero-copy">
@@ -951,7 +948,7 @@ def render_chat() -> None:
         st.markdown(
             """
             <div class="chat-message assistant">
-                <div class="chat-role assistant-role"> NestFind</div>
+                <div class="chat-role assistant-role">🏠 NestFind</div>
                 Tell me what you're looking for in Bangalore.<br>
                 <span style="color: #9aa4b2; font-size: 0.85rem;">
                     Example: "3 BHK near Electronic City under 90 lakh with schools nearby"
