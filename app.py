@@ -20,7 +20,7 @@ from ui_state import (
 # ============================================================================
 st.set_page_config(
     page_title="NestFind - Find Your Dream Home",
-    page_icon="🏠",
+    
     layout="wide",
     initial_sidebar_state="collapsed",
 )
