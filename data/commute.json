@@ -1,0 +1,17 @@
+[
+  {
+    "from": "Whitefield",
+    "to": "Electronic City",
+    "time_min": 45
+  },
+  {
+    "from": "Whitefield",
+    "to": "ITPL",
+    "time_min": 10
+  },
+  {
+    "from": "Marathahalli",
+    "to": "Electronic City",
+    "time_min": 35
+  }
+]

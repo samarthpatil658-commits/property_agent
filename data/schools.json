@@ -1,0 +1,22 @@
+[
+  {
+    "location": "Whitefield",
+    "schools": [
+      {"name": "National Public School", "rating": 4.8},
+      {"name": "Delhi Public School", "rating": 4.7}
+    ]
+  },
+  {
+    "location": "Electronic City",
+    "schools": [
+      {"name": "Treamis World School", "rating": 4.5},
+      {"name": "BS International School", "rating": 4.4}
+    ]
+  },
+  {
+    "location": "Marathahalli",
+    "schools": [
+      {"name": "New Horizon Gurukul", "rating": 4.6}
+    ]
+  }
+]

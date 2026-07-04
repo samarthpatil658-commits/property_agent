@@ -1,0 +1,26 @@
+[
+  {
+    "location": "Whitefield",
+    "safety": 8.8,
+    "metro": true,
+    "hospital_distance_km": 2,
+    "mall_distance_km": 1,
+    "parks": 4
+  },
+  {
+    "location": "Electronic City",
+    "safety": 8.1,
+    "metro": false,
+    "hospital_distance_km": 3,
+    "mall_distance_km": 4,
+    "parks": 3
+  },
+  {
+    "location": "Marathahalli",
+    "safety": 8.5,
+    "metro": true,
+    "hospital_distance_km": 2,
+    "mall_distance_km": 2,
+    "parks": 2
+  }
+]
