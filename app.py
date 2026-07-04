@@ -158,64 +158,117 @@ def inject_css():
             padding-bottom: 3rem;
         }
 
-        /* Hero Section - Logo only */
+        /* Hero Section */
         .hero {
-            background: rgba(17, 21, 32, 0.6);
+            background: linear-gradient(135deg, 
+                rgba(17, 21, 32, 0.8) 0%, 
+                rgba(25, 31, 46, 0.6) 50%,
+                rgba(17, 21, 32, 0.8) 100%
+            );
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 2rem 2.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: 20px;
+            padding: 3rem 3.5rem;
+            margin-bottom: 2rem;
             backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(100, 210, 255, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .hero .logo {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            margin: 0;
-            background: linear-gradient(135deg, #64d2ff, #9ae6b4);
+            background: linear-gradient(135deg, #64d2ff 0%, #9ae6b4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .logo-icon {
+            font-size: 2.5rem;
+            -webkit-text-fill-color: initial;
+        }
+
+        .hero .tagline {
+            color: #64d2ff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 700;
-            margin: 0.3rem 0 0;
+            margin: 0.2rem 0 0.5rem;
             color: #f7f8fb;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
         }
 
         .hero-copy {
             color: #c9d1dc;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-top: 0.3rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-top: 0.2rem;
             max-width: 600px;
+            opacity: 0.9;
         }
 
         .hero-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.8rem;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
         }
 
         .pill {
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 999px;
-            padding: 0.3rem 0.8rem;
+            padding: 0.35rem 1rem;
             color: #dbe4ef;
             background: rgba(255, 255, 255, 0.04);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .pill:hover {
+            background: rgba(100, 210, 255, 0.08);
+            border-color: rgba(100, 210, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         /* Prompt suggestion box */
         .prompt-box {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 0.8rem 1.2rem;
             margin-bottom: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .prompt-box:hover {
+            border-color: rgba(100, 210, 255, 0.2);
         }
 
         .prompt-box .label {
@@ -237,18 +290,18 @@ def inject_css():
             border-left: 3px solid #64d2ff;
         }
 
-        /* Professional Tabs */
+        /* Tabs */
         .tabs-container {
             background: rgba(17, 21, 32, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 0.5rem;
             margin-bottom: 1.5rem;
             backdrop-filter: blur(12px);
         }
 
         .stTabs [data-baseweb="tab-list"] {
-            gap: 0;
+            gap: 0.2rem;
             background: transparent;
             padding: 0;
             border: none;
@@ -256,27 +309,41 @@ def inject_css():
         }
 
         .stTabs [data-baseweb="tab"] {
-            border-radius: 8px;
-            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            padding: 0.7rem 1.4rem;
             background: transparent;
             color: #9aa4b2;
             font-weight: 500;
-            font-size: 0.8rem;
-            transition: all 0.2s;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
             border: none;
             letter-spacing: 0.3px;
+            position: relative;
         }
 
         .stTabs [data-baseweb="tab"]:hover {
             color: #f7f8fb;
             background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-1px);
         }
 
         .stTabs [aria-selected="true"] {
-            background: rgba(100, 210, 255, 0.12);
+            background: rgba(100, 210, 255, 0.15);
             color: #f7f8fb;
-            border: 1px solid rgba(100, 210, 255, 0.15);
-            box-shadow: 0 2px 8px rgba(100, 210, 255, 0.1);
+            border: 1px solid rgba(100, 210, 255, 0.25);
+            box-shadow: 0 4px 15px rgba(100, 210, 255, 0.15);
+            font-weight: 600;
+        }
+
+        .stTabs [aria-selected="true"]::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, #64d2ff, #9ae6b4);
+            border-radius: 2px;
         }
 
         .stTabs [data-baseweb="tab-panel"] {
@@ -287,52 +354,57 @@ def inject_css():
         .chat-shell {
             background: rgba(17, 21, 32, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 1.2rem;
-            min-height: 25rem;
-            max-height: 35rem;
+            border-radius: 14px;
+            padding: 1.5rem;
+            min-height: 30rem;
+            max-height: 38rem;
             overflow-y: auto;
             backdrop-filter: blur(12px);
+            margin-bottom: 0.5rem;
         }
 
         .chat-shell::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
 
         .chat-shell::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
         }
 
         .chat-shell::-webkit-scrollbar-thumb {
             background: rgba(100, 210, 255, 0.3);
-            border-radius: 2px;
+            border-radius: 10px;
         }
 
         .chat-message {
-            padding: 0.7rem 1rem;
-            border-radius: 10px;
-            margin-bottom: 0.6rem;
+            padding: 0.9rem 1.2rem;
+            border-radius: 14px;
+            margin-bottom: 0.8rem;
             max-width: 85%;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.4s ease;
+            line-height: 1.6;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .chat-message.user {
-            background: rgba(100, 210, 255, 0.1);
-            border: 1px solid rgba(100, 210, 255, 0.15);
+            background: linear-gradient(135deg, rgba(100, 210, 255, 0.15), rgba(100, 210, 255, 0.05));
+            border: 1px solid rgba(100, 210, 255, 0.2);
             margin-left: auto;
             color: #f7f8fb;
+            border-bottom-right-radius: 4px;
         }
 
         .chat-message.assistant {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             margin-right: auto;
             color: #f7f8fb;
+            border-bottom-left-radius: 4px;
         }
 
         .chat-role {
@@ -340,7 +412,7 @@ def inject_css():
             font-weight: 700;
             text-transform: uppercase;
             color: #9aa4b2;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
             letter-spacing: 0.5px;
         }
 
@@ -352,13 +424,41 @@ def inject_css():
             color: #9ae6b4;
         }
 
-        /* Professional Profile */
+        /* Fixed chat input */
+        div[data-testid="stChatInput"] {
+            position: sticky;
+            bottom: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            background: rgba(17, 21, 32, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 0.3rem;
+            margin-top: 0.5rem;
+            z-index: 10;
+        }
+
+        div[data-testid="stChatInput"] > div {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        div[data-testid="stChatInput"] textarea {
+            color: #f7f8fb;
+            font-size: 0.95rem;
+        }
+
+        /* Profile Panel - Chips */
         .profile-card {
             background: rgba(17, 21, 32, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 1.5rem;
             backdrop-filter: blur(12px);
+            transition: border-color 0.3s ease;
+        }
+
+        .profile-card:hover {
+            border-color: rgba(100, 210, 255, 0.15);
         }
 
         .profile-card .header {
@@ -373,83 +473,300 @@ def inject_css():
         .profile-card .header h3 {
             margin: 0;
             color: #f7f8fb;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
         }
 
         .profile-card .header .badge {
-            background: rgba(100, 210, 255, 0.1);
+            background: rgba(100, 210, 255, 0.12);
             border: 1px solid rgba(100, 210, 255, 0.15);
             border-radius: 999px;
-            padding: 0.2rem 0.8rem;
+            padding: 0.25rem 0.9rem;
             font-size: 0.7rem;
             color: #64d2ff;
+            font-weight: 600;
         }
 
-        .profile-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.8rem;
+        .profile-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
         }
 
-        .profile-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            padding: 0.7rem;
+        .profile-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+            padding: 0.4rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
 
-        .profile-item label {
-            display: block;
+        .profile-chip:hover {
+            background: rgba(100, 210, 255, 0.05);
+            border-color: rgba(100, 210, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .profile-chip .chip-label {
             color: #9aa4b2;
             font-size: 0.6rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0.2rem;
         }
 
-        .profile-item .value {
+        .profile-chip .chip-value {
             color: #f7f8fb;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
+        }
+
+        .profile-chip .chip-value.empty {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Property Cards */
+        .property-card {
+            background: rgba(17, 21, 32, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .property-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(100, 210, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .property-visual {
+            min-height: 12rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .property-card:hover .property-visual {
+            transform: scale(1.01);
+        }
+
+        .property-visual-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem;
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .property-visual-overlay span {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .property-visual-overlay strong {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .property-top {
+            display: grid !important;
+            grid-template-columns: 1fr auto !important;
+            gap: 1rem !important;
+            align-items: start !important;
+            margin-bottom: 0.8rem !important;
+            direction: ltr !important;
+        }
+
+        .property-name {
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+            margin: 0 !important;
+            color: #f7f8fb !important;
+            text-align: left !important;
+        }
+
+        .property-location {
+            color: #9aa4b2 !important;
+            font-size: 0.85rem !important;
+            margin-top: 0.15rem !important;
+            text-align: left !important;
+        }
+
+        .score-badge {
+            text-align: right !important;
+            color: #9ae6b4 !important;
+            font-weight: 800 !important;
+            font-size: 1.5rem !important;
+            white-space: nowrap !important;
+            text-shadow: 0 0 20px rgba(154, 230, 180, 0.2);
+        }
+
+        .status-badge {
+            display: inline-block !important;
+            padding: 0.2rem 0.7rem !important;
+            border-radius: 999px !important;
+            font-size: 0.7rem !important;
+            font-weight: 600 !important;
+            background: rgba(100, 210, 255, 0.12) !important;
+            margin-left: 0.6rem !important;
+        }
+
+        .card-metrics {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 0.6rem !important;
+            margin: 0.8rem 0 !important;
+        }
+
+        .card-metric {
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            border-radius: 10px !important;
+            padding: 0.6rem !important;
+            text-align: center !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .card-metric:hover {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border-color: rgba(100, 210, 255, 0.1) !important;
+        }
+
+        .card-metric small {
+            color: #9aa4b2 !important;
+            display: block !important;
+            font-size: 0.6rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            margin-bottom: 0.2rem !important;
+        }
+
+        .card-metric strong {
+            font-size: 0.95rem !important;
+            color: #f7f8fb !important;
+            font-weight: 600 !important;
+        }
+
+        .pill-row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 0.4rem !important;
+            margin: 0.6rem 0 !important;
+            direction: ltr !important;
+        }
+
+        .pill {
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 999px !important;
+            padding: 0.3rem 0.7rem !important;
+            color: #dbe4ef !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            font-size: 0.7rem !important;
+            display: inline-block !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .pill:hover {
+            background: rgba(100, 210, 255, 0.05) !important;
+            border-color: rgba(100, 210, 255, 0.15) !important;
+        }
+
+        .pill.trade-off {
+            border-color: rgba(255, 200, 50, 0.2) !important;
+            background: rgba(255, 200, 50, 0.05) !important;
+            color: #facc15 !important;
+        }
+
+        .pill.watch {
+            border-color: rgba(255, 100, 100, 0.2) !important;
+            background: rgba(255, 100, 100, 0.05) !important;
+            color: #fb7185 !important;
+        }
+
+        .reason-list {
+            margin: 0.5rem 0 0 !important;
+            padding-left: 1.2rem !important;
+            color: #d9e2ee !important;
+            font-size: 0.85rem !important;
+            line-height: 1.6 !important;
+            text-align: left !important;
+        }
+
+        .reason-list li {
+            text-align: left !important;
+        }
+
+        .ai-summary {
+            margin-top: 0.8rem !important;
+            padding: 0.8rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+            border-radius: 10px !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .ai-summary:hover {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border-color: rgba(100, 210, 255, 0.1) !important;
+        }
+
+        .ai-summary small {
+            display: block !important;
+            color: #64d2ff !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            font-size: 0.65rem !important;
+            letter-spacing: 0.5px !important;
+            margin-bottom: 0.2rem !important;
+        }
+
+        .ai-summary p {
+            margin: 0 !important;
+            color: #dbe4ef !important;
+            font-size: 0.85rem !important;
+            line-height: 1.5 !important;
+            text-align: left !important;
         }
 
         /* Buttons */
         .stButton > button {
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.04);
-            color: #f7f8fb;
-            padding: 0.4rem 1.2rem;
-            transition: all 0.2s;
-            font-size: 0.8rem;
-            font-weight: 500;
+            border-radius: 12px !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            color: #f7f8fb !important;
+            padding: 0.5rem 1.5rem !important;
+            transition: all 0.3s ease !important;
+            font-size: 0.85rem !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.3px !important;
         }
 
         .stButton > button:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
         }
 
-        /* Input */
-        div[data-testid="stChatInput"] {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            background: rgba(17, 21, 32, 0.8);
-            backdrop-filter: blur(12px);
-            padding: 0.2rem;
-        }
-
-        div[data-testid="stChatInput"] > div {
-            background: transparent;
-            border-radius: 10px;
-        }
-
-        div[data-testid="stChatInput"] textarea {
-            color: #f7f8fb;
-        }
-
-        /* Metrics */
+        /* Analytics Metrics */
         .metric-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -460,23 +777,32 @@ def inject_css():
         .metric-box {
             background: rgba(17, 21, 32, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 1.2rem;
+            border-radius: 14px;
+            padding: 1.5rem;
             text-align: center;
             backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-box:hover {
+            transform: translateY(-2px);
+            border-color: rgba(100, 210, 255, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .metric-box .number {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #f7f8fb;
+            letter-spacing: -0.5px;
         }
 
         .metric-box .label {
             color: #9aa4b2;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            margin-top: 0.2rem;
+            margin-top: 0.3rem;
         }
 
         /* Responsive */
@@ -485,21 +811,37 @@ def inject_css():
                 max-width: 95%;
             }
             .hero {
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
-            .profile-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero .logo {
+                font-size: 2.2rem;
+            }
+            .profile-chips {
+                gap: 0.3rem;
+            }
+            .profile-chip {
+                padding: 0.3rem 0.7rem;
+                font-size: 0.8rem;
             }
             .metric-grid {
                 grid-template-columns: 1fr;
             }
             .stTabs [data-baseweb="tab"] {
                 padding: 0.4rem 0.8rem;
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
             .chat-shell {
                 min-height: 20rem;
                 max-height: 25rem;
+            }
+            .card-metrics {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .property-top {
+                grid-template-columns: 1fr !important;
+            }
+            .score-badge {
+                text-align: left !important;
             }
         }
 
@@ -510,12 +852,22 @@ def inject_css():
             .hero .logo {
                 font-size: 1.8rem;
             }
-            .profile-grid {
-                grid-template-columns: 1fr;
+            .hero {
+                padding: 1rem;
+            }
+            .profile-chips {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .profile-chip {
+                justify-content: center;
             }
             .stTabs [data-baseweb="tab"] {
                 padding: 0.3rem 0.5rem;
-                font-size: 0.65rem;
+                font-size: 0.7rem;
+            }
+            .card-metrics {
+                grid-template-columns: 1fr !important;
             }
         }
         </style>
@@ -548,8 +900,7 @@ def _list_items(items):
     return "".join(f"<li>{html.escape(str(item))}</li>" for item in items)
 
 def show_property_card(item, rank=None, key_prefix="property"):
-    """Render a premium property recommendation card with RTL fixes."""
-
+    """Render a premium property recommendation card."""
     property_data = item["property"]
     score = item.get("score", 0)
     match = item.get("match", f"{score}%")
@@ -580,7 +931,6 @@ def show_property_card(item, rank=None, key_prefix="property"):
     title_prefix = f"#{rank} " if rank else ""
     visual = PROPERTY_VISUALS[property_data["id"] % len(PROPERTY_VISUALS)]
 
-    # Determine status badge color
     if confidence >= 85:
         status_badge = "🟢 Excellent"
         status_color = "#10b981"
@@ -593,212 +943,24 @@ def show_property_card(item, rank=None, key_prefix="property"):
 
     st.markdown(
         f"""
-        <style>
-        /* Property card styles - force LTR */
-        .property-card {{
-            direction: ltr !important;
-            text-align: left !important;
-            background: rgba(17, 21, 32, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(12px);
-        }}
-        .property-card:hover {{
-            transform: translateY(-2px);
-            border-color: rgba(100, 210, 255, 0.3);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        }}
-        .property-visual {{
-            min-height: 10rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, {visual[0]}, {visual[1]} 56%, {visual[2]});
-        }}
-        .property-visual-overlay {{
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }}
-        .property-visual-overlay span {{
-            color: rgba(255,255,255,0.9);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }}
-        .property-visual-overlay strong {{
-            color: white;
-            font-size: 1.2rem;
-        }}
-        .property-top {{
-            display: grid !important;
-            grid-template-columns: 1fr auto !important;
-            gap: 1rem !important;
-            align-items: start !important;
-            margin-bottom: 0.5rem !important;
-            direction: ltr !important;
-        }}
-        .property-name {{
-            font-size: 1.15rem !important;
-            font-weight: 700 !important;
-            margin: 0 !important;
-            color: #f7f8fb !important;
-            text-align: left !important;
-        }}
-        .property-location {{
-            color: #9aa4b2 !important;
-            font-size: 0.85rem !important;
-            margin-top: 0.15rem !important;
-            text-align: left !important;
-        }}
-        .score-badge {{
-            text-align: right !important;
-            color: #9ae6b4 !important;
-            font-weight: 800 !important;
-            font-size: 1.3rem !important;
-            white-space: nowrap !important;
-        }}
-        .status-badge {{
-            display: inline-block !important;
-            padding: 0.15rem 0.6rem !important;
-            border-radius: 999px !important;
-            font-size: 0.65rem !important;
-            font-weight: 600 !important;
-            background: rgba(100, 210, 255, 0.15) !important;
-            color: {status_color} !important;
-            margin-left: 0.5rem !important;
-        }}
-        .card-metrics {{
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            gap: 0.5rem !important;
-            margin: 0.7rem 0 !important;
-        }}
-        .card-metric {{
-            border: 1px solid rgba(255, 255, 255, 0.06) !important;
-            border-radius: 8px !important;
-            padding: 0.5rem !important;
-            text-align: center !important;
-            background: rgba(255, 255, 255, 0.02) !important;
-        }}
-        .card-metric small {{
-            color: #9aa4b2 !important;
-            display: block !important;
-            font-size: 0.6rem !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.5px !important;
-        }}
-        .card-metric strong {{
-            font-size: 0.9rem !important;
-            color: #f7f8fb !important;
-        }}
-        .pill-row {{
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 0.4rem !important;
-            margin: 0.5rem 0 !important;
-            direction: ltr !important;
-        }}
-        .pill {{
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            border-radius: 999px !important;
-            padding: 0.25rem 0.6rem !important;
-            color: #dbe4ef !important;
-            background: rgba(255, 255, 255, 0.04) !important;
-            font-size: 0.7rem !important;
-            display: inline-block !important;
-        }}
-        .pill.trade-off {{
-            border-color: rgba(255, 200, 50, 0.2) !important;
-            background: rgba(255, 200, 50, 0.05) !important;
-            color: #facc15 !important;
-        }}
-        .pill.watch {{
-            border-color: rgba(255, 100, 100, 0.2) !important;
-            background: rgba(255, 100, 100, 0.05) !important;
-            color: #fb7185 !important;
-        }}
-        .reason-list {{
-            margin: 0.5rem 0 0 !important;
-            padding-left: 1.2rem !important;
-            color: #d9e2ee !important;
-            font-size: 0.85rem !important;
-            line-height: 1.6 !important;
-            text-align: left !important;
-        }}
-        .reason-list li {{
-            text-align: left !important;
-        }}
-        .ai-summary {{
-            margin-top: 0.8rem !important;
-            padding: 0.8rem !important;
-            border: 1px solid rgba(255, 255, 255, 0.06) !important;
-            border-radius: 8px !important;
-            background: rgba(255, 255, 255, 0.02) !important;
-        }}
-        .ai-summary small {{
-            display: block !important;
-            color: #64d2ff !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            font-size: 0.65rem !important;
-            letter-spacing: 0.5px !important;
-            margin-bottom: 0.2rem !important;
-        }}
-        .ai-summary p {{
-            margin: 0 !important;
-            color: #dbe4ef !important;
-            font-size: 0.85rem !important;
-            line-height: 1.5 !important;
-            text-align: left !important;
-        }}
-        @media (max-width: 640px) {{
-            .property-card {{
-                padding: 0.8rem !important;
-            }}
-            .card-metrics {{
-                grid-template-columns: repeat(2, 1fr) !important;
-            }}
-            .property-top {{
-                grid-template-columns: 1fr !important;
-            }}
-            .score-badge {{
-                text-align: left !important;
-            }}
-            .property-name {{
-                font-size: 1rem !important;
-            }}
-        }}
-        </style>
-        
-        <article class="property-card" style="direction: ltr !important;">
-            <div class="property-visual">
+        <article class="property-card">
+            <div class="property-visual" style="background: linear-gradient(135deg, {visual[0]}, {visual[1]} 56%, {visual[2]});">
                 <div class="property-visual-overlay">
                     <span>{html.escape(property_data["location"])}</span>
                     <strong>{property_data["bhk"]} BHK</strong>
                 </div>
             </div>
-            <div class="property-top" style="direction: ltr !important;">
+            <div class="property-top">
                 <div>
-                    <p class="property-name" style="direction: ltr !important;">
+                    <p class="property-name">
                         {title_prefix}{html.escape(property_data["name"])}
-                        <span class="status-badge">{status_badge}</span>
+                        <span class="status-badge" style="color: {status_color} !important;">{status_badge}</span>
                     </p>
-                    <div class="property-location" style="direction: ltr !important;">
+                    <div class="property-location">
                         {html.escape(property_data["location"])} | {property_data["bhk"]} BHK | {property_data["area_sqft"]} sqft
                     </div>
                 </div>
-                <div class="score-badge" style="text-align: right !important;">{match}</div>
+                <div class="score-badge">{match}</div>
             </div>
             <div class="card-metrics">
                 <div class="card-metric">
@@ -834,22 +996,22 @@ def show_property_card(item, rank=None, key_prefix="property"):
                     <strong>{property_data.get("roi", "N/A")}%</strong>
                 </div>
             </div>
-            <div class="pill-row" style="direction: ltr !important;">
+            <div class="pill-row">
                 {"".join(f'<span class="pill">{html.escape(str(a))}</span>' for a in property_data.get("amenities", [])[:6])}
             </div>
-            <ul class="reason-list" style="direction: ltr !important;">{_list_items(reasons)}</ul>
-            <div class="pill-row" style="direction: ltr !important;">
+            <ul class="reason-list">{_list_items(reasons)}</ul>
+            <div class="pill-row">
                 <span class="pill">{budget_text}</span>
                 <span class="pill">🏫 Schools: {len(schools) if schools else property_data.get("school_rating", "N/A")}</span>
                 <span class="pill">📈 Growth: {property_data.get("price_growth", "N/A")}%</span>
             </div>
-            <div class="pill-row" style="direction: ltr !important;">
+            <div class="pill-row">
                 {"".join(f'<span class="pill trade-off">⚖️ {html.escape(str(t))}</span>' for t in tradeoffs[:2])}
                 {"".join(f'<span class="pill watch">⚠️ {html.escape(str(c))}</span>' for c in cons[:2])}
             </div>
-            <div class="ai-summary" style="direction: ltr !important;">
+            <div class="ai-summary">
                 <small>🤖 AI Summary</small>
-                <p style="direction: ltr !important;">{html.escape(ai_summary)}</p>
+                <p>{html.escape(ai_summary)}</p>
             </div>
         </article>
         """,
@@ -870,23 +1032,27 @@ def show_property_card(item, rank=None, key_prefix="property"):
 # RENDER FUNCTIONS
 # ============================================================================
 def render_hero():
-    """Render the hero section with logo only."""
+    """Render the hero section with branding."""
     st.markdown(
         """
         <div class="hero">
-            <div>
+            <div class="brand">
                 <span class="logo">NestFind</span>
+                <span class="logo-icon">🏠</span>
             </div>
+            <div class="tagline">AI-Powered Real Estate Consultant</div>
             <h1>Find Your Dream Home</h1>
             <p class="hero-copy">
-                AI-powered real estate consultant for Bangalore. Build your buyer profile,
-                search listings, check neighbourhoods, schools, commute, and price history.
+                Build your buyer profile, search listings, check neighbourhoods, 
+                schools, commute, and price history — all in one conversation.
             </p>
             <div class="hero-pills">
                 <span class="pill">📍 Bangalore</span>
                 <span class="pill">🤖 AI Assistant</span>
                 <span class="pill">📊 Smart Ranking</span>
                 <span class="pill">💡 Investment Insights</span>
+                <span class="pill">🏫 School Ratings</span>
+                <span class="pill">🚗 Commute Analysis</span>
             </div>
         </div>
         """,
@@ -908,8 +1074,8 @@ def render_prompt_suggestion():
 
 
 def render_profile(profile: Dict[str, Any]) -> None:
-    """Render the buyer profile card."""
-    if not any(profile.values()):
+    """Render the buyer profile with chips/badges."""
+    if not profile or not any(profile.values()):
         st.markdown("""
         <div class="profile-card">
             <div class="header">
@@ -923,20 +1089,88 @@ def render_profile(profile: Dict[str, Any]) -> None:
         """, unsafe_allow_html=True)
         return
     
+    # Define profile fields to display
     fields = [
-        ("Budget", format_money(profile.get("budget"))),
-        ("BHK", profile_value(profile.get("bhk"))),
-        ("Locations", profile_value(profile.get("preferred_locations"))),
-        ("Property Type", profile_value(profile.get("property_type"))),
-        ("Schools", profile_value(profile.get("school_priority"))),
-        ("Metro", profile_value(profile.get("metro_priority"))),
-        ("Investment", profile_value(profile.get("investment_priority"))),
+        ("Budget", "budget", format_money(profile.get("budget"))),
+        ("BHK", "bhk", profile_value(profile.get("bhk"))),
+        ("Locations", "preferred_locations", profile_value(profile.get("preferred_locations"))),
+        ("Property Type", "property_type", profile_value(profile.get("property_type"))),
+        ("Schools", "school_priority", profile_value(profile.get("school_priority"))),
+        ("Metro", "metro_priority", profile_value(profile.get("metro_priority"))),
+        ("Investment", "investment_priority", profile_value(profile.get("investment_priority"))),
+        ("Pets", "pet_friendly", profile_value(profile.get("pet_friendly"))),
+        ("Office", "office", profile_value(profile.get("office"))),
+        ("Family Size", "family_size", profile_value(profile.get("family_size"))),
     ]
     
-    html = '<div class="profile-card"><div class="header"><h3>📋 Buyer Profile</h3><span class="badge">Active</span></div><div class="profile-grid">'
-    for label, value in fields:
-        html += f'<div class="profile-item"><label>{label}</label><div class="value">{value}</div></div>'
-    html += "</div></div>"
+    # Check if any field has a value
+    has_values = any(
+        profile.get(field_key) not in (None, "", [], {}) 
+        for _, field_key, _ in fields
+    )
+    
+    if not has_values:
+        st.markdown("""
+        <div class="profile-card">
+            <div class="header">
+                <h3>📋 Buyer Profile</h3>
+                <span class="badge">Incomplete</span>
+            </div>
+            <p style="color: #9aa4b2; text-align: center; padding: 2rem 0;">
+                Start a conversation to build your profile
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        return
+    
+    html = '''
+    <div class="profile-card">
+        <div class="header">
+            <h3>📋 Buyer Profile</h3>
+            <span class="badge">Active</span>
+        </div>
+        <div class="profile-chips">
+    '''
+    
+    for label, field_key, value in fields:
+        # Check if this field has a meaningful value
+        raw_value = profile.get(field_key)
+        is_empty = raw_value in (None, "", [], {})
+        
+        if is_empty:
+            continue  # Skip empty fields to keep profile clean
+        
+        # Format the value for display
+        display_value = value
+        value_class = "chip-value"
+        
+        # Check for special values that should be styled differently
+        if display_value in ("—", "Not set", "Learning", "No", "False"):
+            value_class += " empty"
+        
+        html += f'''
+        <div class="profile-chip">
+            <span class="chip-label">{label}</span>
+            <span class="{value_class}">{display_value}</span>
+        </div>
+        '''
+    
+    # If no chips were added (all fields empty), show empty state
+    if html == '''
+    <div class="profile-card">
+        <div class="header">
+            <h3>📋 Buyer Profile</h3>
+            <span class="badge">Active</span>
+        </div>
+        <div class="profile-chips">
+    ''':  # No chips added
+        html += '''
+        <p style="color: #9aa4b2; text-align: center; padding: 1rem 0;">
+            No preferences set yet. Start a conversation to build your profile.
+        </p>
+        '''
+    
+    html += '</div></div>'
     st.markdown(html, unsafe_allow_html=True)
 
 
@@ -1023,7 +1257,7 @@ def render_property_details(result: Optional[Dict[str, Any]]) -> None:
         actions = show_property_card(item, rank=1, key_prefix="details")
         handle_property_actions(actions)
     with col2:
-        st.markdown('<div style="background: rgba(17,21,32,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.2rem; backdrop-filter: blur(12px);">', unsafe_allow_html=True)
+        st.markdown('<div style="background: rgba(17,21,32,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.5rem; backdrop-filter: blur(12px);">', unsafe_allow_html=True)
         st.subheader("🤖 AI Summary")
         st.write(item.get("ai_summary", "No summary available."))
         
@@ -1170,7 +1404,7 @@ def render_settings() -> None:
             st.rerun()
     with col2:
         st.markdown("""
-        <div style="background: rgba(17,21,32,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.8rem 1rem; backdrop-filter: blur(8px);">
+        <div style="background: rgba(17,21,32,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 0.8rem 1rem; backdrop-filter: blur(8px);">
             <div style="color: #9aa4b2; font-size: 0.7rem;">Session Status</div>
             <div style="color: #9ae6b4; font-size: 0.8rem; font-weight: 600;">● Active</div>
         </div>
@@ -1182,17 +1416,12 @@ def render_settings() -> None:
 # ============================================================================
 def main():
     """Main application entry point."""
-    # Initialize state
     ensure_state()
-    
-    # Inject CSS
     inject_css()
     
-    # Render header and prompt
     render_hero()
     render_prompt_suggestion()
     
-    # Professional tabs
     st.markdown('<div class="tabs-container">', unsafe_allow_html=True)
     tabs = st.tabs([
         "💬 Chat",
@@ -1206,13 +1435,11 @@ def main():
     ])
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Get data
     last_result = st.session_state.last_result
     profile = st.session_state.agent.conversation.get_profile()
     if last_result:
         profile = last_result.get("buyer") or last_result.get("profile") or {}
     
-    # Render tabs
     with tabs[0]:
         render_chat()
     
@@ -1237,17 +1464,12 @@ def main():
     with tabs[7]:
         render_settings()
     
-    # Chat input
     prompt = st.chat_input("💬 Describe what you're looking for...")
     
     if prompt:
-        # Increment run count
         st.session_state.run_count += 1
-        
-        # Add user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         
-        # Process with status
         with st.status("🔍 Searching...", expanded=True) as status:
             st.write("🧠 Understanding buyer intent")
             st.write("📋 Planning tool calls")
@@ -1261,10 +1483,8 @@ def main():
                 status.update(label="❌ Failed", state="error", expanded=False)
                 return
         
-        # Store result
         st.session_state.last_result = result
         
-        # Build response
         if result.get("type") == "question":
             assistant_text = result.get("message", "I need more information to help you.")
         else:
@@ -1272,15 +1492,9 @@ def main():
             explanation = result.get("explanation", "")
             assistant_text = explanation or f"I found {count} matching properties."
         
-        # Add assistant message
         st.session_state.messages.append({"role": "assistant", "content": assistant_text})
-        
-        # Rerun to update UI
         st.rerun()
 
 
-# ============================================================================
-# ENTRY POINT
-# ============================================================================
 if __name__ == "__main__":
     main()
