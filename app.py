@@ -878,7 +878,7 @@ def render_hero():
         <div class="hero">
             <div>
                 <span class="logo">NestFind</span>
-                <span class="logo-sub">🏠</span>
+                
             </div>
             <h1>Find Your Dream Home</h1>
             <p class="hero-copy">
@@ -951,7 +951,7 @@ def render_chat() -> None:
         st.markdown(
             """
             <div class="chat-message assistant">
-                <div class="chat-role assistant-role">🏠 NestFind</div>
+                <div class="chat-role assistant-role"> NestFind</div>
                 Tell me what you're looking for in Bangalore.<br>
                 <span style="color: #9aa4b2; font-size: 0.85rem;">
                     Example: "3 BHK near Electronic City under 90 lakh with schools nearby"
