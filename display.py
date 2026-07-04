@@ -27,91 +27,129 @@ def _list_items(items):
 
 
 def show_property_card(item, rank=None, key_prefix="property"):
-    """Render a premium property recommendation card and return button clicks."""
-
     property_data = item["property"]
+
     score = item.get("score", 0)
     match = item.get("match", f"{score}%")
     confidence = item.get("confidence", 90)
+
     reasons = item.get("reason", [])
     cons = item.get("cons", [])
     tradeoffs = item.get("tradeoffs", [])
+
     affordability = item.get("affordability", {})
     commute = item.get("commute", {})
-    schools = item.get("schools", [])
     neighbourhood = item.get("neighbourhood", {})
-    ai_summary = item.get("ai_summary", "AI summary will appear after ranking completes.")
+    schools = item.get("schools", [])
 
     price_per_sqft = property_data["price"] / property_data["area_sqft"]
-    affordable = affordability.get("affordable")
+
     budget_text = (
-        f"Within budget, {_money(affordability.get('remaining_budget'))} buffer"
-        if affordable
-        else f"{_money(affordability.get('shortfall'))} shortfall"
+        f"Within Budget • {_money(affordability.get('remaining_budget'))} left"
+        if affordability.get("affordable")
+        else f"Short by {_money(affordability.get('shortfall'))}"
     )
 
     commute_text = commute.get("time_min", "N/A")
     if commute_text != "N/A":
         commute_text = f"{commute_text} min"
 
-    safety = neighbourhood.get("safety", property_data.get("crime_score", "N/A"))
-    metro = "Yes" if neighbourhood.get("metro") else f"{property_data.get('metro_distance', 'N/A')} m"
-    title_prefix = f"#{rank} " if rank else ""
-    visual = PROPERTY_VISUALS[property_data["id"] % len(PROPERTY_VISUALS)]
-
-    st.markdown(
-        f"""
-        <article class="property-card">
-            <div class="property-visual" style="background: linear-gradient(135deg, {visual[0]}, {visual[1]} 56%, {visual[2]});">
-                <div class="property-visual-overlay">
-                    <span>{html.escape(property_data["location"])}</span>
-                    <strong>{property_data["bhk"]} BHK</strong>
-                </div>
-            </div>
-            <div class="property-top">
-                <div>
-                    <p class="property-name">{title_prefix}{html.escape(property_data["name"])}</p>
-                    <div class="property-location">{html.escape(property_data["location"])} | {property_data["bhk"]} BHK | {property_data["area_sqft"]} sqft</div>
-                </div>
-                <div class="score-badge">{match}</div>
-            </div>
-            <div class="card-metrics">
-                <div class="card-metric"><small>Price</small><strong>{_money(property_data["price"])}</strong></div>
-                <div class="card-metric"><small>Confidence</small><strong>{confidence}%</strong></div>
-                <div class="card-metric"><small>Rating</small><strong>{property_data["rating"]}/5</strong></div>
-                <div class="card-metric"><small>Price / sqft</small><strong>Rs {price_per_sqft:,.0f}</strong></div>
-                <div class="card-metric"><small>Metro</small><strong>{metro}</strong></div>
-                <div class="card-metric"><small>Commute</small><strong>{commute_text}</strong></div>
-                <div class="card-metric"><small>Safety</small><strong>{safety}</strong></div>
-                <div class="card-metric"><small>ROI</small><strong>{property_data.get("roi", "N/A")}%</strong></div>
-            </div>
-            <div class="pill-row">
-                {"".join(f'<span class="pill">{html.escape(str(a))}</span>' for a in property_data.get("amenities", []))}
-            </div>
-            <ul class="reason-list">{_list_items(reasons)}</ul>
-            <div class="pill-row">
-                <span class="pill">{budget_text}</span>
-                <span class="pill">Schools: {len(schools) if schools else property_data.get("school_rating", "N/A")}</span>
-                <span class="pill">Growth: {property_data.get("price_growth", "N/A")}%</span>
-            </div>
-            <div class="pill-row">
-                {"".join(f'<span class="pill">Trade-off: {html.escape(str(t))}</span>' for t in tradeoffs[:2])}
-                {"".join(f'<span class="pill">Watch: {html.escape(str(c))}</span>' for c in cons[:2])}
-            </div>
-            <div class="ai-summary">
-                <small>AI Summary</small>
-                <p>{html.escape(ai_summary)}</p>
-            </div>
-        </article>
-        """,
-        unsafe_allow_html=True,
+    metro = (
+        "Nearby"
+        if neighbourhood.get("metro")
+        else f"{property_data.get('metro_distance','N/A')} m"
     )
 
+    with st.container(border=True):
+
+        c1, c2 = st.columns([5,1])
+
+        with c1:
+            st.subheader(
+                f"{'#'+str(rank)+' ' if rank else ''}{property_data['name']}"
+            )
+
+            st.caption(
+                f"📍 {property_data['location']} • "
+                f"{property_data['bhk']} BHK • "
+                f"{property_data['area_sqft']} sqft"
+            )
+
+        with c2:
+            st.metric("Match", match)
+
+        m1, m2, m3, m4 = st.columns(4)
+
+        m1.metric("Price", _money(property_data["price"]))
+        m2.metric("Rating", f"{property_data['rating']}/5")
+        m3.metric("Confidence", f"{confidence}%")
+        m4.metric("ROI", f"{property_data.get('roi','N/A')}%")
+
+        m5, m6, m7, m8 = st.columns(4)
+
+        m5.metric("Price/sqft", f"₹ {price_per_sqft:,.0f}")
+        m6.metric("Metro", metro)
+        m7.metric("Commute", commute_text)
+        m8.metric(
+            "Safety",
+            neighbourhood.get(
+                "safety",
+                property_data.get("crime_score","N/A")
+            )
+        )
+
+        st.write("### Amenities")
+        st.write(" • ".join(property_data.get("amenities", [])))
+
+        st.write("### Why this property?")
+
+        for reason in reasons:
+            st.success(reason)
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.info(f"💰 {budget_text}")
+            st.info(
+                f"🏫 Schools: "
+                f"{len(schools) if schools else property_data.get('school_rating','N/A')}"
+            )
+
+        with col2:
+            st.info(
+                f"📈 Growth: "
+                f"{property_data.get('price_growth','N/A')}%"
+            )
+
+        if tradeoffs:
+            st.write("### Trade-offs")
+            for t in tradeoffs:
+                st.warning(t)
+
+        if cons:
+            st.write("### Things to Watch")
+            for c in cons:
+                st.error(c)
+
     c1, c2, c3 = st.columns(3)
-    prop_id = property_data["id"]
+
+    pid = property_data["id"]
+
     return {
-        "property_id": prop_id,
-        "details": c1.button("Details", key=f"{key_prefix}_view_{prop_id}", use_container_width=True),
-        "compare": c2.button("Compare", key=f"{key_prefix}_compare_{prop_id}", use_container_width=True),
-        "shortlist": c3.button("Shortlist", key=f"{key_prefix}_save_{prop_id}", use_container_width=True),
+        "property_id": pid,
+        "details": c1.button(
+            "📄 Details",
+            key=f"{key_prefix}_view_{pid}",
+            use_container_width=True,
+        ),
+        "compare": c2.button(
+            "⚖ Compare",
+            key=f"{key_prefix}_compare_{pid}",
+            use_container_width=True,
+        ),
+        "shortlist": c3.button(
+            "⭐ Shortlist",
+            key=f"{key_prefix}_save_{pid}",
+            use_container_width=True,
+        ),
     }

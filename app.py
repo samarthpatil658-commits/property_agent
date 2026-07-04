@@ -131,12 +131,7 @@ def inject_css():
     st.markdown(
         """
         <style>
-        /* Force LTR and hide sidebar */
-        .stApp, .stApp * {
-            direction: ltr !important;
-            text-align: left !important;
-        }
-        
+        /* Hide sidebar completely */
         [data-testid="stSidebar"] {
             display: none !important;
         }
@@ -185,13 +180,6 @@ def inject_css():
             pointer-events: none;
         }
 
-        .hero .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-
         .hero .logo {
             font-size: 3rem;
             font-weight: 800;
@@ -202,18 +190,13 @@ def inject_css():
             letter-spacing: -0.5px;
         }
 
-        .hero .logo-icon {
-            font-size: 2.5rem;
-            -webkit-text-fill-color: initial;
-        }
-
         .hero .tagline {
             color: #64d2ff;
             font-size: 1.1rem;
             font-weight: 500;
             letter-spacing: 0.3px;
             opacity: 0.9;
-            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
         }
 
         .hero h1 {
@@ -447,305 +430,6 @@ def inject_css():
             font-size: 0.95rem;
         }
 
-        /* Profile Panel - Chips */
-        .profile-card {
-            background: rgba(17, 21, 32, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 1.5rem;
-            backdrop-filter: blur(12px);
-            transition: border-color 0.3s ease;
-        }
-
-        .profile-card:hover {
-            border-color: rgba(100, 210, 255, 0.15);
-        }
-
-        .profile-card .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .profile-card .header h3 {
-            margin: 0;
-            color: #f7f8fb;
-            font-size: 1.05rem;
-            font-weight: 600;
-        }
-
-        .profile-card .header .badge {
-            background: rgba(100, 210, 255, 0.12);
-            border: 1px solid rgba(100, 210, 255, 0.15);
-            border-radius: 999px;
-            padding: 0.25rem 0.9rem;
-            font-size: 0.7rem;
-            color: #64d2ff;
-            font-weight: 600;
-        }
-
-        .profile-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-        }
-
-        .profile-chip {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 999px;
-            padding: 0.4rem 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .profile-chip:hover {
-            background: rgba(100, 210, 255, 0.05);
-            border-color: rgba(100, 210, 255, 0.15);
-            transform: translateY(-1px);
-        }
-
-        .profile-chip .chip-label {
-            color: #9aa4b2;
-            font-size: 0.6rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .profile-chip .chip-value {
-            color: #f7f8fb;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .profile-chip .chip-value.empty {
-            color: #64748b;
-            font-style: italic;
-        }
-
-        /* Property Cards */
-        .property-card {
-            background: rgba(17, 21, 32, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.2rem;
-            backdrop-filter: blur(8px);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .property-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(100, 210, 255, 0.2);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .property-visual {
-            min-height: 12rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 1.2rem;
-            transition: transform 0.4s ease;
-        }
-
-        .property-card:hover .property-visual {
-            transform: scale(1.01);
-        }
-
-        .property-visual-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.2rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .property-visual-overlay span {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .property-visual-overlay strong {
-            color: white;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .property-top {
-            display: grid !important;
-            grid-template-columns: 1fr auto !important;
-            gap: 1rem !important;
-            align-items: start !important;
-            margin-bottom: 0.8rem !important;
-            direction: ltr !important;
-        }
-
-        .property-name {
-            font-size: 1.2rem !important;
-            font-weight: 700 !important;
-            margin: 0 !important;
-            color: #f7f8fb !important;
-            text-align: left !important;
-        }
-
-        .property-location {
-            color: #9aa4b2 !important;
-            font-size: 0.85rem !important;
-            margin-top: 0.15rem !important;
-            text-align: left !important;
-        }
-
-        .score-badge {
-            text-align: right !important;
-            color: #9ae6b4 !important;
-            font-weight: 800 !important;
-            font-size: 1.5rem !important;
-            white-space: nowrap !important;
-            text-shadow: 0 0 20px rgba(154, 230, 180, 0.2);
-        }
-
-        .status-badge {
-            display: inline-block !important;
-            padding: 0.2rem 0.7rem !important;
-            border-radius: 999px !important;
-            font-size: 0.7rem !important;
-            font-weight: 600 !important;
-            background: rgba(100, 210, 255, 0.12) !important;
-            margin-left: 0.6rem !important;
-        }
-
-        .card-metrics {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            gap: 0.6rem !important;
-            margin: 0.8rem 0 !important;
-        }
-
-        .card-metric {
-            border: 1px solid rgba(255, 255, 255, 0.06) !important;
-            border-radius: 10px !important;
-            padding: 0.6rem !important;
-            text-align: center !important;
-            background: rgba(255, 255, 255, 0.03) !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .card-metric:hover {
-            background: rgba(255, 255, 255, 0.06) !important;
-            border-color: rgba(100, 210, 255, 0.1) !important;
-        }
-
-        .card-metric small {
-            color: #9aa4b2 !important;
-            display: block !important;
-            font-size: 0.6rem !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.5px !important;
-            margin-bottom: 0.2rem !important;
-        }
-
-        .card-metric strong {
-            font-size: 0.95rem !important;
-            color: #f7f8fb !important;
-            font-weight: 600 !important;
-        }
-
-        .pill-row {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 0.4rem !important;
-            margin: 0.6rem 0 !important;
-            direction: ltr !important;
-        }
-
-        .pill {
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            border-radius: 999px !important;
-            padding: 0.3rem 0.7rem !important;
-            color: #dbe4ef !important;
-            background: rgba(255, 255, 255, 0.04) !important;
-            font-size: 0.7rem !important;
-            display: inline-block !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .pill:hover {
-            background: rgba(100, 210, 255, 0.05) !important;
-            border-color: rgba(100, 210, 255, 0.15) !important;
-        }
-
-        .pill.trade-off {
-            border-color: rgba(255, 200, 50, 0.2) !important;
-            background: rgba(255, 200, 50, 0.05) !important;
-            color: #facc15 !important;
-        }
-
-        .pill.watch {
-            border-color: rgba(255, 100, 100, 0.2) !important;
-            background: rgba(255, 100, 100, 0.05) !important;
-            color: #fb7185 !important;
-        }
-
-        .reason-list {
-            margin: 0.5rem 0 0 !important;
-            padding-left: 1.2rem !important;
-            color: #d9e2ee !important;
-            font-size: 0.85rem !important;
-            line-height: 1.6 !important;
-            text-align: left !important;
-        }
-
-        .reason-list li {
-            text-align: left !important;
-        }
-
-        .ai-summary {
-            margin-top: 0.8rem !important;
-            padding: 0.8rem !important;
-            border: 1px solid rgba(255, 255, 255, 0.06) !important;
-            border-radius: 10px !important;
-            background: rgba(255, 255, 255, 0.02) !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .ai-summary:hover {
-            background: rgba(255, 255, 255, 0.04) !important;
-            border-color: rgba(100, 210, 255, 0.1) !important;
-        }
-
-        .ai-summary small {
-            display: block !important;
-            color: #64d2ff !important;
-            font-weight: 700 !important;
-            text-transform: uppercase !important;
-            font-size: 0.65rem !important;
-            letter-spacing: 0.5px !important;
-            margin-bottom: 0.2rem !important;
-        }
-
-        .ai-summary p {
-            margin: 0 !important;
-            color: #dbe4ef !important;
-            font-size: 0.85rem !important;
-            line-height: 1.5 !important;
-            text-align: left !important;
-        }
-
         /* Buttons */
         .stButton > button {
             border-radius: 12px !important;
@@ -816,13 +500,6 @@ def inject_css():
             .hero .logo {
                 font-size: 2.2rem;
             }
-            .profile-chips {
-                gap: 0.3rem;
-            }
-            .profile-chip {
-                padding: 0.3rem 0.7rem;
-                font-size: 0.8rem;
-            }
             .metric-grid {
                 grid-template-columns: 1fr;
             }
@@ -833,15 +510,6 @@ def inject_css():
             .chat-shell {
                 min-height: 20rem;
                 max-height: 25rem;
-            }
-            .card-metrics {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-            .property-top {
-                grid-template-columns: 1fr !important;
-            }
-            .score-badge {
-                text-align: left !important;
             }
         }
 
@@ -855,19 +523,9 @@ def inject_css():
             .hero {
                 padding: 1rem;
             }
-            .profile-chips {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .profile-chip {
-                justify-content: center;
-            }
             .stTabs [data-baseweb="tab"] {
                 padding: 0.3rem 0.5rem;
                 font-size: 0.7rem;
-            }
-            .card-metrics {
-                grid-template-columns: 1fr !important;
             }
         }
         </style>
@@ -877,169 +535,14 @@ def inject_css():
 
 
 # ============================================================================
-# PROPERTY CARD RENDERER
-# ============================================================================
-PROPERTY_VISUALS = [
-    ("#172033", "#2f80ed", "#9ae6b4"),
-    ("#1d2233", "#a855f7", "#64d2ff"),
-    ("#16251f", "#22c55e", "#facc15"),
-    ("#241d2b", "#fb7185", "#38bdf8"),
-    ("#202033", "#818cf8", "#f8fafc"),
-]
-
-def _money(value):
-    if value is None:
-        return "N/A"
-    if value >= 10_000_000:
-        return f"₹ {value / 10_000_000:.2f} Cr"
-    return f"₹ {value / 100_000:.0f} L"
-
-def _list_items(items):
-    if not items:
-        return "<li>Recommendation generated from available market signals.</li>"
-    return "".join(f"<li>{html.escape(str(item))}</li>" for item in items)
-
-def show_property_card(item, rank=None, key_prefix="property"):
-    """Render a premium property recommendation card."""
-    property_data = item["property"]
-    score = item.get("score", 0)
-    match = item.get("match", f"{score}%")
-    confidence = item.get("confidence", 90)
-    reasons = item.get("reason", [])
-    cons = item.get("cons", [])
-    tradeoffs = item.get("tradeoffs", [])
-    affordability = item.get("affordability", {})
-    commute = item.get("commute", {})
-    schools = item.get("schools", [])
-    neighbourhood = item.get("neighbourhood", {})
-    ai_summary = item.get("ai_summary", "AI summary will appear after ranking completes.")
-
-    price_per_sqft = property_data["price"] / property_data["area_sqft"]
-    affordable = affordability.get("affordable")
-    budget_text = (
-        f"✅ Within budget, {_money(affordability.get('remaining_budget'))} buffer"
-        if affordable
-        else f"⚠️ {_money(affordability.get('shortfall'))} shortfall"
-    )
-
-    commute_text = commute.get("time_min", "N/A")
-    if commute_text != "N/A":
-        commute_text = f"{commute_text} min"
-
-    safety = neighbourhood.get("safety", property_data.get("crime_score", "N/A"))
-    metro = "✅ Yes" if neighbourhood.get("metro") else f"{property_data.get('metro_distance', 'N/A')} m"
-    title_prefix = f"#{rank} " if rank else ""
-    visual = PROPERTY_VISUALS[property_data["id"] % len(PROPERTY_VISUALS)]
-
-    if confidence >= 85:
-        status_badge = "🟢 Excellent"
-        status_color = "#10b981"
-    elif confidence >= 60:
-        status_badge = "🟡 Good"
-        status_color = "#f59e0b"
-    else:
-        status_badge = "🔴 Needs Review"
-        status_color = "#ef4444"
-
-    st.markdown(
-        f"""
-        <article class="property-card">
-            <div class="property-visual" style="background: linear-gradient(135deg, {visual[0]}, {visual[1]} 56%, {visual[2]});">
-                <div class="property-visual-overlay">
-                    <span>{html.escape(property_data["location"])}</span>
-                    <strong>{property_data["bhk"]} BHK</strong>
-                </div>
-            </div>
-            <div class="property-top">
-                <div>
-                    <p class="property-name">
-                        {title_prefix}{html.escape(property_data["name"])}
-                        <span class="status-badge" style="color: {status_color} !important;">{status_badge}</span>
-                    </p>
-                    <div class="property-location">
-                        {html.escape(property_data["location"])} | {property_data["bhk"]} BHK | {property_data["area_sqft"]} sqft
-                    </div>
-                </div>
-                <div class="score-badge">{match}</div>
-            </div>
-            <div class="card-metrics">
-                <div class="card-metric">
-                    <small>Price</small>
-                    <strong>{_money(property_data["price"])}</strong>
-                </div>
-                <div class="card-metric">
-                    <small>Confidence</small>
-                    <strong>{confidence}%</strong>
-                </div>
-                <div class="card-metric">
-                    <small>Rating</small>
-                    <strong>{property_data["rating"]}/5</strong>
-                </div>
-                <div class="card-metric">
-                    <small>Price/sqft</small>
-                    <strong>₹ {price_per_sqft:,.0f}</strong>
-                </div>
-                <div class="card-metric">
-                    <small>Metro</small>
-                    <strong>{metro}</strong>
-                </div>
-                <div class="card-metric">
-                    <small>Commute</small>
-                    <strong>{commute_text}</strong>
-                </div>
-                <div class="card-metric">
-                    <small>Safety</small>
-                    <strong>{safety}</strong>
-                </div>
-                <div class="card-metric">
-                    <small>ROI</small>
-                    <strong>{property_data.get("roi", "N/A")}%</strong>
-                </div>
-            </div>
-            <div class="pill-row">
-                {"".join(f'<span class="pill">{html.escape(str(a))}</span>' for a in property_data.get("amenities", [])[:6])}
-            </div>
-            <ul class="reason-list">{_list_items(reasons)}</ul>
-            <div class="pill-row">
-                <span class="pill">{budget_text}</span>
-                <span class="pill">🏫 Schools: {len(schools) if schools else property_data.get("school_rating", "N/A")}</span>
-                <span class="pill">📈 Growth: {property_data.get("price_growth", "N/A")}%</span>
-            </div>
-            <div class="pill-row">
-                {"".join(f'<span class="pill trade-off">⚖️ {html.escape(str(t))}</span>' for t in tradeoffs[:2])}
-                {"".join(f'<span class="pill watch">⚠️ {html.escape(str(c))}</span>' for c in cons[:2])}
-            </div>
-            <div class="ai-summary">
-                <small>🤖 AI Summary</small>
-                <p>{html.escape(ai_summary)}</p>
-            </div>
-        </article>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    c1, c2, c3 = st.columns(3)
-    prop_id = property_data["id"]
-    return {
-        "property_id": prop_id,
-        "details": c1.button("📋 Details", key=f"{key_prefix}_view_{prop_id}", use_container_width=True),
-        "compare": c2.button("⚖️ Compare", key=f"{key_prefix}_compare_{prop_id}", use_container_width=True),
-        "shortlist": c3.button("⭐ Save", key=f"{key_prefix}_save_{prop_id}", use_container_width=True),
-    }
-
-
-# ============================================================================
 # RENDER FUNCTIONS
 # ============================================================================
 def render_hero():
-    """Render the hero section with branding."""
+    """Render the hero section with logo only."""
     st.markdown(
         """
         <div class="hero">
-            <div class="brand">
-                <span class="logo">NestFind</span>
-                <span class="logo-icon">🏠</span>
-            </div>
+            <div class="logo">NestFind</div>
             <div class="tagline">AI-Powered Real Estate Consultant</div>
             <h1>Find Your Dream Home</h1>
             <p class="hero-copy">
@@ -1071,107 +574,6 @@ def render_prompt_suggestion():
         """,
         unsafe_allow_html=True,
     )
-
-
-def render_profile(profile: Dict[str, Any]) -> None:
-    """Render the buyer profile with chips/badges."""
-    if not profile or not any(profile.values()):
-        st.markdown("""
-        <div class="profile-card">
-            <div class="header">
-                <h3>📋 Buyer Profile</h3>
-                <span class="badge">Incomplete</span>
-            </div>
-            <p style="color: #9aa4b2; text-align: center; padding: 2rem 0;">
-                Start a conversation to build your profile
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        return
-    
-    # Define profile fields to display
-    fields = [
-        ("Budget", "budget", format_money(profile.get("budget"))),
-        ("BHK", "bhk", profile_value(profile.get("bhk"))),
-        ("Locations", "preferred_locations", profile_value(profile.get("preferred_locations"))),
-        ("Property Type", "property_type", profile_value(profile.get("property_type"))),
-        ("Schools", "school_priority", profile_value(profile.get("school_priority"))),
-        ("Metro", "metro_priority", profile_value(profile.get("metro_priority"))),
-        ("Investment", "investment_priority", profile_value(profile.get("investment_priority"))),
-        ("Pets", "pet_friendly", profile_value(profile.get("pet_friendly"))),
-        ("Office", "office", profile_value(profile.get("office"))),
-        ("Family Size", "family_size", profile_value(profile.get("family_size"))),
-    ]
-    
-    # Check if any field has a value
-    has_values = any(
-        profile.get(field_key) not in (None, "", [], {}) 
-        for _, field_key, _ in fields
-    )
-    
-    if not has_values:
-        st.markdown("""
-        <div class="profile-card">
-            <div class="header">
-                <h3>📋 Buyer Profile</h3>
-                <span class="badge">Incomplete</span>
-            </div>
-            <p style="color: #9aa4b2; text-align: center; padding: 2rem 0;">
-                Start a conversation to build your profile
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-        return
-    
-    html = '''
-    <div class="profile-card">
-        <div class="header">
-            <h3>📋 Buyer Profile</h3>
-            <span class="badge">Active</span>
-        </div>
-        <div class="profile-chips">
-    '''
-    
-    for label, field_key, value in fields:
-        # Check if this field has a meaningful value
-        raw_value = profile.get(field_key)
-        is_empty = raw_value in (None, "", [], {})
-        
-        if is_empty:
-            continue  # Skip empty fields to keep profile clean
-        
-        # Format the value for display
-        display_value = value
-        value_class = "chip-value"
-        
-        # Check for special values that should be styled differently
-        if display_value in ("—", "Not set", "Learning", "No", "False"):
-            value_class += " empty"
-        
-        html += f'''
-        <div class="profile-chip">
-            <span class="chip-label">{label}</span>
-            <span class="{value_class}">{display_value}</span>
-        </div>
-        '''
-    
-    # If no chips were added (all fields empty), show empty state
-    if html == '''
-    <div class="profile-card">
-        <div class="header">
-            <h3>📋 Buyer Profile</h3>
-            <span class="badge">Active</span>
-        </div>
-        <div class="profile-chips">
-    ''':  # No chips added
-        html += '''
-        <p style="color: #9aa4b2; text-align: center; padding: 1rem 0;">
-            No preferences set yet. Start a conversation to build your profile.
-        </p>
-        '''
-    
-    html += '</div></div>'
-    st.markdown(html, unsafe_allow_html=True)
 
 
 def render_chat() -> None:
@@ -1257,17 +659,58 @@ def render_property_details(result: Optional[Dict[str, Any]]) -> None:
         actions = show_property_card(item, rank=1, key_prefix="details")
         handle_property_actions(actions)
     with col2:
-        st.markdown('<div style="background: rgba(17,21,32,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.5rem; backdrop-filter: blur(12px);">', unsafe_allow_html=True)
-        st.subheader("🤖 AI Summary")
-        st.write(item.get("ai_summary", "No summary available."))
+        st.markdown("""
+        <div style="background: rgba(17,21,32,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.5rem; backdrop-filter: blur(12px);">
+            <h3 style="color: #f7f8fb; margin-bottom: 0.5rem;">📋 Property Details</h3>
+            <hr style="border-color: rgba(255,255,255,0.06); margin: 0.5rem 0 1rem;">
+        """, unsafe_allow_html=True)
         
-        st.subheader("✅ Strengths")
+        prop = item.get("property", {})
+        st.markdown(f"""
+        <div style="margin-bottom: 1rem;">
+            <p style="color: #9aa4b2; font-size: 0.8rem; margin: 0;">📍 Location</p>
+            <p style="color: #f7f8fb; font-size: 1.1rem; font-weight: 600; margin: 0;">{prop.get('location', 'N/A')}</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem;">
+            <div>
+                <p style="color: #9aa4b2; font-size: 0.8rem; margin: 0;">💰 Price</p>
+                <p style="color: #64d2ff; font-size: 1.1rem; font-weight: 600; margin: 0;">{format_money(prop.get('price'))}</p>
+            </div>
+            <div>
+                <p style="color: #9aa4b2; font-size: 0.8rem; margin: 0;">🏠 BHK</p>
+                <p style="color: #f7f8fb; font-size: 1.1rem; font-weight: 600; margin: 0;">{prop.get('bhk', 'N/A')}</p>
+            </div>
+            <div>
+                <p style="color: #9aa4b2; font-size: 0.8rem; margin: 0;">📐 Area</p>
+                <p style="color: #f7f8fb; font-size: 1.1rem; font-weight: 600; margin: 0;">{prop.get('area_sqft', 'N/A')} sqft</p>
+            </div>
+            <div>
+                <p style="color: #9aa4b2; font-size: 0.8rem; margin: 0;">⭐ Rating</p>
+                <p style="color: #9ae6b4; font-size: 1.1rem; font-weight: 600; margin: 0;">{prop.get('rating', 'N/A')}/5</p>
+            </div>
+        </div>
+        <hr style="border-color: rgba(255,255,255,0.06); margin: 0.5rem 0 1rem;">
+        """, unsafe_allow_html=True)
+        
+        st.markdown('<h4 style="color: #9ae6b4; margin-top: 0.5rem;">✅ Strengths</h4>', unsafe_allow_html=True)
         for value in item.get("pros", []) or ["None listed"]:
             st.success(value)
         
-        st.subheader("⚠️ Trade-offs")
+        st.markdown('<h4 style="color: #facc15; margin-top: 1rem;">⚠️ Trade-offs</h4>', unsafe_allow_html=True)
         for value in item.get("tradeoffs", []) or ["None listed"]:
             st.info(value)
+        
+        st.markdown('<h4 style="color: #fb7185; margin-top: 1rem;">🔴 Watch-outs</h4>', unsafe_allow_html=True)
+        for value in item.get("cons", []) or ["None listed"]:
+            st.warning(value)
+        
+        st.markdown('<h4 style="color: #9aa4b2; margin-top: 1rem;">🔧 Tools Used</h4>', unsafe_allow_html=True)
+        tools_used = item.get("tools_used", [])
+        if tools_used:
+            st.write(", ".join(tools_used))
+        else:
+            st.write("No tools recorded.")
+        
         st.markdown("</div>", unsafe_allow_html=True)
 
 
@@ -1301,6 +744,8 @@ def render_comparison(result: Optional[Dict[str, Any]]) -> None:
             "BHK": prop.get("bhk", "N/A"),
             "Rating": f"{prop.get('rating', 0):.1f}",
             "ROI": f"{prop.get('roi', 0)}%",
+            "Match": item.get("match", "N/A"),
+            "Confidence": f"{item.get('confidence', 0)}%",
         })
     st.dataframe(rows, use_container_width=True, hide_index=True)
 
@@ -1330,6 +775,7 @@ def render_analytics(result: Optional[Dict[str, Any]]) -> None:
     
     avg_price = sum(p.get("price", 0) for p in properties) / len(properties)
     avg_rating = sum(p.get("rating", 0) for p in properties) / len(properties)
+    avg_roi = sum(p.get("roi", 0) for p in properties) / len(properties)
     
     st.markdown(f"""
     <div class="metric-grid">
@@ -1344,6 +790,10 @@ def render_analytics(result: Optional[Dict[str, Any]]) -> None:
         <div class="metric-box">
             <div class="number">{avg_rating:.1f}</div>
             <div class="label">Average Rating</div>
+        </div>
+        <div class="metric-box">
+            <div class="number">{avg_roi:.1f}%</div>
+            <div class="label">Average ROI</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1381,6 +831,8 @@ def render_shortlist(result: Optional[Dict[str, Any]]) -> None:
             "Price": format_money(prop.get("price")),
             "Match": item.get("match", "N/A"),
             "Confidence": f"{item.get('confidence', 0)}%",
+            "Rating": f"{prop.get('rating', 0):.1f}",
+            "ROI": f"{prop.get('roi', 0)}%",
         })
     st.dataframe(rows, use_container_width=True, hide_index=True)
 
@@ -1425,7 +877,6 @@ def main():
     st.markdown('<div class="tabs-container">', unsafe_allow_html=True)
     tabs = st.tabs([
         "💬 Chat",
-        "📋 Profile", 
         "🏠 Results",
         "📄 Details",
         "⚖️ Compare",
@@ -1436,32 +887,26 @@ def main():
     st.markdown('</div>', unsafe_allow_html=True)
     
     last_result = st.session_state.last_result
-    profile = st.session_state.agent.conversation.get_profile()
-    if last_result:
-        profile = last_result.get("buyer") or last_result.get("profile") or {}
     
     with tabs[0]:
         render_chat()
     
     with tabs[1]:
-        render_profile(profile)
-    
-    with tabs[2]:
         render_results(last_result)
     
-    with tabs[3]:
+    with tabs[2]:
         render_property_details(last_result)
     
-    with tabs[4]:
+    with tabs[3]:
         render_comparison(last_result)
     
-    with tabs[5]:
+    with tabs[4]:
         render_analytics(last_result)
     
-    with tabs[6]:
+    with tabs[5]:
         render_shortlist(last_result)
     
-    with tabs[7]:
+    with tabs[6]:
         render_settings()
     
     prompt = st.chat_input("💬 Describe what you're looking for...")
